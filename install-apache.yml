@@ -1,0 +1,30 @@
+---
+- name: Install Apache2 on Ubuntu
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Update Apt
+      apt:
+        update_cache: yes
+
+    - name: "Update"
+      debug:
+          msg: "Update Successfuly"
+
+    - name: Install Apache2 package
+      apt:
+        name: apache2
+        state: present
+
+    - name: "Intall Message"    
+      debug:
+          msg: "Apache Installed"
+
+    - name: Ensure Apache2 Servcice is started and enabled
+      service:
+            name: apache2
+            state: started
+            enabled: yes
+    - name: Success
+      debug:
+       msg: "All  Task Done"
